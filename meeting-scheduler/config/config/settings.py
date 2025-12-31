@@ -53,7 +53,17 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
+
+# Timezone settings
+USE_TZ = True
+TIME_ZONE = 'UTC'
+
+# Custom user model
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -95,6 +105,18 @@ DATABASES = {
     }
 }
 
+
+# TEMPORARY FOR DEMO - ALLOW EVERYTHING
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # Changed from IsAuthenticated
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [],  # Empty - no auth required
+}
+
+# Disable CSRF
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

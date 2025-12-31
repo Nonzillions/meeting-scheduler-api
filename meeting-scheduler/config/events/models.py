@@ -20,4 +20,4 @@ class Event(models.Model):
         ordering = ['start_time']
     
     def __str__(self):
-        return f"{self.title} ({self.owner.username})"
+        return f"{self.title} ({self.get_event_type_display()})"
